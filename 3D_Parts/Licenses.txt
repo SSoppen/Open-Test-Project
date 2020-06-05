@@ -1,0 +1,2 @@
+The 10x2 Trapezoidal Leadscrew is from https://www.thingiverse.com/thing:138504, and is a under the Creative Commons Share Alike license
+The other 3D files are originally from or modified versions of the open source Universal Testing Machine project by Stefan Hermann

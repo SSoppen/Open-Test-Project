@@ -1,0 +1,85 @@
+This is the documentation for the Open Test Project
+The project is meant to be easy to expand upon, and it is up to the user to document any hardware or software changes made
+
+------------------------Python GUI Settings------------------------
+CSV Filename: 
+Sets the filename for the output file. If a file with the same name already exists in the folder, it will be written on it instead.
+By default it appends "OTP" at the end of the filename. This can be changed in the python code
+
+port:
+Set the port that will be used for communication. Has a default value that can be changed or removed through the variable in the script
+
+frequency:
+Set the frequency that will be used for communication. Has a default value that can be changed or removed through  the variable in the script
+
+------------------------Arduino User Variables------------------------
+
+stepperDelay:
+range: int
+Sets the stepper duration (ms). Smaller number would mean faster stepping
+
+maxAllowedForce:
+range: float
+Sets a max allowed force for the entire system. If exceeded the system stops. Assumes correct calibration of the load cell
+
+useMaxAllowedForce:
+range: true/false
+Says wheter to use the maxAllowedForce system or not
+
+
+------------------------Arduino Test Variables------------------------
+
+idle:
+range: true/false
+Tells the system if testing should start or not. Recommended to be set to false at the end of testing
+
+mode:
+Range 0-3 by default,
+Sets the mode of the program to the specifed number. Some modes don't use all variables. See Included modes for more details
+
+stepDirection:
+range: 0-1,
+Sets the direction of the stepper motors. Which way is up or down depends on how they are wired
+
+measuringIntervall:
+range: float
+Sets how often in seconds a measurement should be read. A lower number will 
+Included modes:
+
+maxForce:
+range: float
+Sets the force for which to stop the test, or lighten the force depending on the mode
+
+timeAtMaxForce:
+range: float   
+Sets how in seconds long the system should wait at maxForce for mode 3
+
+restForce:
+range: float 
+Defines the force at which the system should start increasing it again
+
+timeAtRestForce:
+range: float
+Sets how long the system should wait at restForce:for mode 3
+
+repeatsDone:
+range: int
+Sets how many times the system should repeat the increase and decrease in force for test mode 3 
+
+------------------------Modes------------------------
+Mode 0: Idle mode
+Required variables: none
+A mode where the load value is simply read
+
+Mode 1: Default test mode
+Required variables: stepdirection, measuringIntervall
+A mode where the stepper motor run in the defined direction, and load value is read at set interval
+
+Mode 2: Test mode with a max allowed force
+Required variables: stepdirection, measuringIntervall, maxForce
+Same as mode 1, but the measuring stops at a spesifed value
+
+Mode 3: Test mode with repeats
+Required variables:stepdirection, measuringIntervall, maxForce, timeAtMaxForce, restForce, timeAtRestForce, repeatsDone
+Mode where the object is taken up to a force, held there for a defined duration, then reduced to a lower force and held there for a separately defined duration.
+This repeats a defined amount of times
